@@ -24,15 +24,15 @@ export class LoginComponent implements OnInit {
   }
   createForm() {
     this.form = this.fb.group({
-      Username: ['', Validators.required],
-      Password: ['', Validators.required]
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
   onSubmit() {
 
-    const username = this.form.value.Username;
-    const password = this.form.value.Password;
+    const username = this.form.value.username;
+    const password = this.form.value.password;
 
     this.authService.login(username, password)
       .subscribe(res => {
@@ -83,5 +83,12 @@ export class LoginComponent implements OnInit {
   hasError(name: string) {
     const e = this.getFormControl(name);
     return e && (e.dirty || e.touched) && !e.valid;
+  }
+
+  getErrorMessage(type) {
+    const errors = {};
+    errors[type] = this.form.get(type).errors;
+    console.log(errors[type]);
+    return errors[type];
   }
 }

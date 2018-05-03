@@ -1,7 +1,9 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AuthService } from './services/auth.service';
 import { AuthRequestInterceptService } from './services/auth.request.intercept.service';
@@ -27,6 +29,8 @@ function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     CommonModule,
     RouterModule,
     HttpClientModule,
+    FlexLayoutModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     NavMenuComponent,
