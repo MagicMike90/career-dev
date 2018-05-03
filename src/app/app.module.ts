@@ -3,9 +3,11 @@ import { NgModule, PLATFORM_ID, APP_ID, Inject } from '@angular/core';
 import { isPlatformBrowser, APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 import { CoreModule } from './core/core.module';
-
+import { UserModule } from './features/user/user.module';
+import { DashboardModule } from './features/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,10 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'career-dev' }),
-    CoreModule
+    CoreModule,
+    UserModule,
+    DashboardModule,
+    AppRoutingModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' },],
   bootstrap: [AppComponent]
