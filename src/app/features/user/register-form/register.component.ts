@@ -26,14 +26,12 @@ export class RegisterComponent implements OnInit {
   }
   createForm() {
     this.form = this.fb.group({
-      username: ['', Validators.required],
       email: ['',
         [Validators.required,
         Validators.email]
       ],
       password: ['', Validators.required],
-      passwordConfirm: ['', Validators.required],
-      displayName: ['', Validators.required]
+      passwordConfirm: ['', Validators.required]
     }, {
         validator: this.passwordConfirmValidator
       });
@@ -42,10 +40,8 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     // build a temporary user object from form values
     const tempUser = <User>{};
-    tempUser.username = this.form.value.username;
     tempUser.email = this.form.value.email;
     tempUser.password = this.form.value.password;
-    tempUser.displayName = this.form.value.displayName;
 
     this.registerService.addUser(tempUser).subscribe(user => {
       if (user) {
@@ -113,8 +109,15 @@ export class RegisterComponent implements OnInit {
   }
   getErrorMessage(name) {
     const errors = {};
-    errors[name] = this.getFormControl(name).errors;
-    console.log(errors[name]);
+    errors['email'] = (this.getFormControl('email').hasError('required') ? 'You must enter a value' :
+      this.getFormControl('email').hasError('email') ? 'Not a valid email' : '');
+
+    errors['password'] = (this.getFormControl('password').hasError('required') ? 'You must enter a value' :
+      this.getFormControl('password').hasError('minLength') ? 'Not a valid password' : '');
+
+    errors['passwordConfirm'] = (this.getFormControl('passwordConfirm').hasError('required') ? 'Please confirm your password' :
+      this.getFormControl('passwordConfirm').hasError('passwordMismatch') ? 'Password and confirm password don\'t match.' : '');
+
     return errors[name];
   }
 }

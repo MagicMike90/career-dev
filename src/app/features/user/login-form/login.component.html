@@ -41,14 +41,14 @@
   <app-facebook-login></app-facebook-login>
 </div> -->
 
-<form class="form-container" [formGroup]="form" (ngSubmit)="submit()">
+<form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h3>Please sign in</h3>
   <mat-form-field>
-    <input matInput placeholder="Username" formControlName="username" required>
-    <mat-error *ngIf="getFormControl('username').invalid">{{getErrorMessage("username")}}</mat-error>
+    <input matInput placeholder="Username" formControlName="email" required>
+    <mat-error *ngIf="getFormControl('email').invalid">{{getErrorMessage("email")}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <input matInput placeholder="Enter your password" type="password" formControlName="password" required>
     <mat-error *ngIf="getFormControl('password').invalid">{{getErrorMessage("password")}}</mat-error>
   </mat-form-field>
 

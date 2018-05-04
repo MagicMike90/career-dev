@@ -24,17 +24,17 @@ export class LoginComponent implements OnInit {
   }
   createForm() {
     this.form = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
 
   onSubmit() {
 
-    const username = this.form.value.username;
+    const email = this.form.value.email;
     const password = this.form.value.password;
 
-    this.authService.login(username, password)
+    this.authService.login(email, password)
       .subscribe(res => {
         // login successful
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         // IMPORTANT: remove this when test is done.
         alert('Login successful! '
           + 'USERNAME: '
-          + username
+          + email
           + ' TOKEN: '
           + this.authService.getAuth().token
         );
@@ -87,8 +87,12 @@ export class LoginComponent implements OnInit {
 
   getErrorMessage(name) {
     const errors = {};
-    errors[name] = this.getFormControl(name).errors;
-    console.log(errors[name]);
+    errors['email'] = (this.getFormControl('email').hasError('required') ? 'You must enter a value' :
+      this.getFormControl('email').hasError('email') ? 'Not a valid email' : '');
+
+    errors['password'] = (this.getFormControl('password').hasError('required') ? 'You must enter a value' :
+      this.getFormControl('password').hasError('minLength') ? 'Not a valid password' : '');
+
     return errors[name];
   }
 }
