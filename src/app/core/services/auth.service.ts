@@ -72,6 +72,22 @@ export class AuthService {
     );
   }
 
+  // forget the password
+  forget(email) {
+    // const data = {
+    //   client_id: this.clientId,
+    //   // required when signing up with username/password
+    //   grant_type: 'refresh_token',
+    //   refresh_token: this.getAuth().refresh_token,
+    //   // space-separated list of scopes for which the token is issued
+    //   scope: 'offline_access profile email'
+    // };
+
+    // return this.http.post<TokenResponse>(url, data, httpOptions).pipe(
+    //   tap(token => this.setAuth(token)),
+    //   catchError(handleError<TokenResponse>('getToken'))
+    // );
+  }
 
   // performs the logout
   logout(): boolean {

@@ -1,63 +1,26 @@
-<!-- <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div *ngIf="form.errors?.auth" class="error-panel invalid-feedback">
-    {{form.errors.auth}}
-  </div>
-  <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('Username') }">
-    <input type="text" required formControlName="Username" class="form-control" placeholder="Username or Email address" />
-    <span *ngIf="hasError('Username')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-    <div *ngIf="hasError('Username')" class="invalid-feedback">
-      Please insert a valid username or e-mail address.
-    </div>
-  </div>
-  <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('password') }">
-    <input type="password" required formControlName="password" class="form-control" placeholder="password" />
-    <span *ngIf="hasError('password')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-    <div *ngIf="hasError('password')" class="invalid-feedback">
-      Please insert a password.
-    </div>
-  </div>
-  <div class="d-flex justify-content-between">
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <div class="login-link">
-      <a [routerLink]="['/user/register']">
-        Forgot password
-      </a>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  </div>
-  <div>Or
-    <a [routerLink]="['/user/register']">Sign up</a>
-  </div>
-</form>
-<div class="text-center">
-  <hr class="hr-text" data-content="OR">
-  <app-facebook-login></app-facebook-login>
-</div> -->
-
 <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
   <h3>Please sign in</h3>
   <mat-form-field>
-    <input matInput placeholder="Username" formControlName="email" required>
+    <input matInput placeholder="Email" formControlName="email" required>
     <mat-error *ngIf="getFormControl('email').invalid">{{getErrorMessage("email")}}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="Enter your password" type="password" formControlName="password" required>
     <mat-error *ngIf="getFormControl('password').invalid">{{getErrorMessage("password")}}</mat-error>
   </mat-form-field>
-
-  <button mat-raised-button color="primary">Login</button>
-  <span class="mat-caption">Don't have an account? Create One
-    <button mat-button type="button" color="primary" routerLink="/user/register">Register</button>
+  <div class="button-group" fxLayoutAlign="space-between" fxLayoutGap="15px">
+    <button mat-raised-button color="primary">Login</button>
+    <button type="button" mat-raised-button color="primary" routerLink="/user/register">Create Account</button>
+  </div>
+  <span class="mat-caption">
+    <button mat-button type="button" color="primary" routerLink="/user/forgot">Forget you password?</button>
   </span>
 </form>
 <div class="text-center">
   <hr class="hr-text" data-content="OR">
-  <app-facebook-login></app-facebook-login>
+  <!-- <app-facebook-login></app-facebook-login>-->
+  <a href="#" class="fa fa-facebook"></a>
+  <a href="#" class="fa fa-twitter"></a>
+  <a href="#" class="fa fa-google"></a>
+  <a href="#" class="fa fa-linkedin"></a>
 </div>

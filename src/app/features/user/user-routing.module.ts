@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SiteLayoutComponent } from '../../core/components/site-layout/site-layout.component';
 import { LoginComponent } from './login-form/login.component';
 import { RegisterComponent } from './register-form/register.component';
+import { ForgetPasswordFormComponent } from './forget-password-form/forget-password-form.component';
 
 const routes: Routes = [
     {
@@ -11,6 +12,7 @@ const routes: Routes = [
         component: SiteLayoutComponent,
         children: [
             { path: 'login', component: LoginComponent },
+            { path: 'forgot', component: ForgetPasswordFormComponent },
             { path: 'register', component: RegisterComponent },
         ]
     },
