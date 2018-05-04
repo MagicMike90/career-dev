@@ -3,8 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {
+  MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+  MatDialogModule, MatProgressSpinnerModule
+} from '@angular/material';
 
+import { ProgressDialogComponent } from './components/progress-dialog/progress-dialog.component';
 
 @NgModule({
   imports: [
@@ -18,7 +22,9 @@ import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFor
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     CommonModule,
@@ -30,8 +36,14 @@ import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFor
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+
   ],
-  declarations: []
+  declarations: [
+    ProgressDialogComponent
+  ],
+  entryComponents: [ProgressDialogComponent]
 })
 export class ShareModule { }

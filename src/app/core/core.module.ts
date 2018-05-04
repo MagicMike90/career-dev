@@ -19,6 +19,7 @@ import { AboutComponent } from './components/about/about.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 
+
 function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
   if (parentModule) {
     throw new Error(`${moduleName} has already been loaded. Import Core modules in the AppModule only.`);
@@ -38,7 +39,7 @@ function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     AppLayoutComponent,
     SiteLayoutComponent,
     AboutComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
   ],
   exports: [
     NavMenuComponent,
