@@ -1,9 +1,15 @@
-.container{
-    height: 100%;
+.container {
+  padding-top: 120px;
+  text-align: center;
 }
+
 .brand img {
   width: 90px;
   height: 90px;
+}
+
+.brand h2 {
+  margin-top: 0;
 }
 
 .footer {
