@@ -26,14 +26,14 @@ export class RegisterComponent implements OnInit {
   }
   createForm() {
     this.form = this.fb.group({
-      Username: ['', Validators.required],
-      Email: ['',
+      username: ['', Validators.required],
+      email: ['',
         [Validators.required,
         Validators.email]
       ],
-      Password: ['', Validators.required],
-      PasswordConfirm: ['', Validators.required],
-      DisplayName: ['', Validators.required]
+      password: ['', Validators.required],
+      passwordConfirm: ['', Validators.required],
+      displayName: ['', Validators.required]
     }, {
         validator: this.passwordConfirmValidator
       });
@@ -42,15 +42,15 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     // build a temporary user object from form values
     const tempUser = <User>{};
-    tempUser.Username = this.form.value.Username;
-    tempUser.Email = this.form.value.Email;
-    tempUser.Password = this.form.value.Password;
-    tempUser.DisplayName = this.form.value.DisplayName;
+    tempUser.username = this.form.value.username;
+    tempUser.email = this.form.value.email;
+    tempUser.password = this.form.value.password;
+    tempUser.displayName = this.form.value.displayName;
 
     this.registerService.addUser(tempUser).subscribe(user => {
       if (user) {
         console.log(user);
-        // console.log('User ' + user.Username + ' has been created.');
+        // console.log('User ' + user.username + ' has been created.');
         // redirect to login page
         this.router.navigate(['user/login']);
       } else {
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
           'register': 'User registration failed.'
         });
       }
-      // console.log('User ' + user.Username + ' has been created.');
+      // console.log('User ' + user.username + ' has been created.');
       // // redirect to login page
       // this.router.navigate(['user/login']);
     }, error => console.log(error));
@@ -70,17 +70,17 @@ export class RegisterComponent implements OnInit {
   }
 
   // custom validator to compare
-  // the Password and passwordConfirm values.
+  // the password and passwordConfirm values.
   passwordConfirmValidator(control: FormControl): any {
 
     // retrieve the two Controls
-    const p = control.root.get('Password');
-    const pc = control.root.get('PasswordConfirm');
+    const p = control.root.get('password');
+    const pc = control.root.get('passwordConfirm');
 
     if (p && pc) {
       if (p.value !== pc.value) {
         pc.setErrors(
-          { 'PasswordMismatch': true }
+          { 'passwordMismatch': true }
         );
       } else {
         pc.setErrors(null);
@@ -110,5 +110,11 @@ export class RegisterComponent implements OnInit {
   hasError(name: string) {
     const e = this.getFormControl(name);
     return e && (e.dirty || e.touched) && !e.valid;
+  }
+  getErrorMessage(name) {
+    const errors = {};
+    errors[name] = this.getFormControl(name).errors;
+    console.log(errors[name]);
+    return errors[name];
   }
 }

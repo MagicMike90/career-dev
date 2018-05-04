@@ -1,5 +1,5 @@
 interface Quiz {
-    Id: number;
+    id: number;
     Title: string;
     Description: string;
     Text: string;

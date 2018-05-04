@@ -103,7 +103,7 @@ export class QuestionEditComponent implements OnInit {
       });
     } else {
       this.questionService.addQuestion(tempQuestion).subscribe(res => {
-        console.log('Question ' + res.Id + ' has been updated.');
+        console.log('Question ' + res.id + ' has been updated.');
         this.router.navigate(['quiz/edit', res.QuizId]);
       });
     }

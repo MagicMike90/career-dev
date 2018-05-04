@@ -36,21 +36,21 @@ export class ResultListComponent implements OnInit, OnChanges {
   }
 
   loadData() {
-    this.resultService.getResults(this.quiz.Id).subscribe(results => this.results = results);
+    this.resultService.getResults(this.quiz.id).subscribe(results => this.results = results);
   }
 
   onCreate() {
-    this.router.navigate(['/result/create', this.quiz.Id]);
+    this.router.navigate(['/result/create', this.quiz.id]);
   }
 
   onEdit(result: Result) {
-    this.router.navigate(['/result/edit', result.Id]);
+    this.router.navigate(['/result/edit', result.id]);
   }
 
   onDelete(result: Result) {
     if (confirm('Do you really want to delete this result?')) {
-      this.resultService.deleteResult(result.Id).subscribe(res => {
-        console.log('Result ' + result.Id + ' has been deleted.');
+      this.resultService.deleteResult(result.id).subscribe(res => {
+        console.log('Result ' + result.id + ' has been deleted.');
 
         // refresh the result list
         this.loadData();

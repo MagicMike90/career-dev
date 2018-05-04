@@ -72,9 +72,9 @@ export class QuizEditComponent implements OnInit {
     tempQuiz.Text = this.form.value.Text;
 
     if (this.editMode) {
-      // don't forget to set the tempQuiz Id,
+      // don't forget to set the tempQuiz id,
       // otherwise the EDIT would fail!
-      tempQuiz.Id = this.quiz.Id;
+      tempQuiz.id = this.quiz.id;
 
       this.quizService.updateQuiz(tempQuiz).subscribe(res => {
         console.log('Quiz ' + res + ' has been updated.');

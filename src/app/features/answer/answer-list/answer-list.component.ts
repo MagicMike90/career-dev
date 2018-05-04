@@ -35,21 +35,21 @@ export class AnswerListComponent implements OnInit, OnChanges {
   }
 
   loadData() {
-    this.answerService.getAnswers(this.question.Id).subscribe(answers => this.answers);
+    this.answerService.getAnswers(this.question.id).subscribe(answers => this.answers);
   }
 
   onCreate() {
-    this.router.navigate(['/answer/create', this.question.Id]);
+    this.router.navigate(['/answer/create', this.question.id]);
   }
 
   onEdit(answer: Answer) {
-    this.router.navigate(['/answer/edit', answer.Id]);
+    this.router.navigate(['/answer/edit', answer.id]);
   }
 
   onDelete(answer: Answer) {
     if (confirm('Do you really want to delete this answer?')) {
       this.answerService.deleteAnswer(answer).subscribe(res => {
-        console.log('Answer ' + answer.Id + ' has been deleted.');
+        console.log('Answer ' + answer.id + ' has been deleted.');
         // refresh the question list
         this.loadData();
       });

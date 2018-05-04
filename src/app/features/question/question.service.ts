@@ -73,14 +73,14 @@ export class QuestionService {
   /** POST: add a new question to the server */
   addQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.questionUrl, question, httpOptions).pipe(
-      tap((newquiz: Question) => console.log(`added question w/ id=${newquiz.Id}`)),
+      tap((newquiz: Question) => console.log(`added question w/ id=${newquiz.id}`)),
       catchError(handleError<Question>('addQuestion'))
     );
   }
 
   /** DELETE: delete the question from the server */
   deleteQuestion(question: Question | number): Observable<Question> {
-    const id = typeof question === 'number' ? question : question.Id;
+    const id = typeof question === 'number' ? question : question.id;
     const url = `${this.questionUrl}/${id}`;
 
     return this.http.delete<Question>(url, httpOptions).pipe(
@@ -92,7 +92,7 @@ export class QuestionService {
   /** PUT: update the question on the server */
   updateQuestion(question: Question): Observable<any> {
     return this.http.put(this.questionUrl, question, httpOptions).pipe(
-      tap(_ => console.log(`updated question id=${question.Id}`)),
+      tap(_ => console.log(`updated question id=${question.id}`)),
       catchError(handleError<any>('updateQuestion'))
     );
   }

@@ -1,5 +1,5 @@
 interface Result {
-  Id: number;
+  id: number;
   QuizId: number;
   Text: string;
   MinValue?: number;

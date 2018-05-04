@@ -1,5 +1,5 @@
 interface Answer {
-  Id: number;
+  id: number;
   QuestionId: number;
   Text: string;
   Value?: number;

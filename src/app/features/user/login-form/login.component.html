@@ -9,10 +9,10 @@
       Please insert a valid username or e-mail address.
     </div>
   </div>
-  <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('Password') }">
-    <input type="password" required formControlName="Password" class="form-control" placeholder="Password" />
-    <span *ngIf="hasError('Password')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-    <div *ngIf="hasError('Password')" class="invalid-feedback">
+  <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('password') }">
+    <input type="password" required formControlName="password" class="form-control" placeholder="password" />
+    <span *ngIf="hasError('password')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+    <div *ngIf="hasError('password')" class="invalid-feedback">
       Please insert a password.
     </div>
   </div>
@@ -54,6 +54,6 @@
 
   <button mat-raised-button color="primary">Login</button>
   <span class="mat-caption">Don't have an account? Create One
-    <button mat-button type="button" color="primary" routerLink="/auth/register">Register</button>
+    <button mat-button type="button" color="primary" routerLink="/user/register">Register</button>
   </span>
 </form>

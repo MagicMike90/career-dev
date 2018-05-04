@@ -69,14 +69,14 @@ export class RegisterService {
   /** POST: add a new user to the server */
   addUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user, httpOptions).pipe(
-      tap((newuser: User) => console.log(`added user w/ id=${newuser.Id}`)),
+      tap((newuser: User) => console.log(`added user w/ id=${newuser.id}`)),
       catchError(handleError<User>('addUser'))
     );
   }
 
   /** DELETE: delete the user from the server */
   deleteUser(user: User | number): Observable<User> {
-    const id = typeof user === 'number' ? user : user.Id;
+    const id = typeof user === 'number' ? user : user.id;
     const url = `${this.userUrl}/${id}`;
 
     return this.http.delete<User>(url, httpOptions).pipe(
@@ -88,7 +88,7 @@ export class RegisterService {
   /** PUT: update the user on the server */
   updateUser(user: User): Observable<any> {
     return this.http.put(this.userUrl, user, httpOptions).pipe(
-      tap(_ => console.log(`updated user id=${user.Id}`)),
+      tap(_ => console.log(`updated user id=${user.id}`)),
       catchError(handleError<any>('updateUser'))
     );
   }

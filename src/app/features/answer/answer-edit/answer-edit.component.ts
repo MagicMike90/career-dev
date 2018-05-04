@@ -78,16 +78,16 @@ export class AnswerEditComponent implements OnInit {
     tempAnswer.QuestionId = this.answer.QuestionId;
 
     if (this.editMode) {
-      // don't forget to set the tempAnswer Id,
+      // don't forget to set the tempAnswer id,
       // otherwise the EDIT would fail!
-      tempAnswer.Id = this.answer.Id;
+      tempAnswer.id = this.answer.id;
       this.answerService.updateAnswer(tempAnswer).subscribe(res => {
-        console.log('Answer ' + res.Id + ' has been updated.');
+        console.log('Answer ' + res.id + ' has been updated.');
         this.router.navigate(['question/edit', res.QuestionId]);
       });
     } else {
       this.answerService.addAnswer(tempAnswer).subscribe(res => {
-        console.log('Answer ' + res.Id + ' has been created.');
+        console.log('Answer ' + res.id + ' has been created.');
         this.router.navigate(['question/edit', res.QuestionId]);
       });
     }

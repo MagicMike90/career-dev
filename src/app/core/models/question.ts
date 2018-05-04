@@ -1,5 +1,5 @@
 interface Question {
-  Id: number;
+  id: number;
   QuizId: number;
   Text: string;
 }

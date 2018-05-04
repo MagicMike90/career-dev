@@ -73,14 +73,14 @@ export class ResultService {
   /** POST: add a new result to the server */
   addResult(result: Result): Observable<Result> {
     return this.http.post<Result>(this.resultUrl, result, httpOptions).pipe(
-      tap((newquiz: Result) => console.log(`added result w/ id=${newquiz.Id}`)),
+      tap((newquiz: Result) => console.log(`added result w/ id=${newquiz.id}`)),
       catchError(handleError<Result>('addResult'))
     );
   }
 
   /** DELETE: delete the result from the server */
   deleteResult(result: Result | number): Observable<Result> {
-    const id = typeof result === 'number' ? result : result.Id;
+    const id = typeof result === 'number' ? result : result.id;
     const url = `${this.resultUrl}/${id}`;
 
     return this.http.delete<Result>(url, httpOptions).pipe(
@@ -92,7 +92,7 @@ export class ResultService {
   /** PUT: update the result on the server */
   updateResult(result: Result): Observable<any> {
     return this.http.put(this.resultUrl, result, httpOptions).pipe(
-      tap(_ => console.log(`updated result id=${result.Id}`)),
+      tap(_ => console.log(`updated result id=${result.id}`)),
       catchError(handleError<any>('updateResult'))
     );
   }

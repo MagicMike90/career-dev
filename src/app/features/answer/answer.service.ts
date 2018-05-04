@@ -74,14 +74,14 @@ export class AnswerService {
   /** POST: add a new answer to the server */
   addAnswer(answer: Answer): Observable<Answer> {
     return this.http.post<Answer>(this.answerUrl, answer, httpOptions).pipe(
-      tap((newquiz: Answer) => console.log(`added answer w/ id=${newquiz.Id}`)),
+      tap((newquiz: Answer) => console.log(`added answer w/ id=${newquiz.id}`)),
       catchError(handleError<Answer>('addAnswer'))
     );
   }
 
   /** DELETE: delete the answer from the server */
   deleteAnswer(answer: Answer | number): Observable<Answer> {
-    const id = typeof answer === 'number' ? answer : answer.Id;
+    const id = typeof answer === 'number' ? answer : answer.id;
     const url = `${this.answerUrl}/${id}`;
 
     return this.http.delete<Answer>(url, httpOptions).pipe(
@@ -93,7 +93,7 @@ export class AnswerService {
   /** PUT: update the answer on the server */
   updateAnswer(answer: Answer): Observable<any> {
     return this.http.put(this.answerUrl, answer, httpOptions).pipe(
-      tap(_ => console.log(`updated answer id=${answer.Id}`)),
+      tap(_ => console.log(`updated answer id=${answer.id}`)),
       catchError(handleError<any>('updateAnswer'))
     );
   }

@@ -36,21 +36,21 @@ export class QuestionListComponent implements OnInit, OnChanges {
   }
 
   loadData() {
-    this.questionService.getQuestions(this.quiz.Id).subscribe(questions => this.questions = questions);
+    this.questionService.getQuestions(this.quiz.id).subscribe(questions => this.questions = questions);
   }
 
   onCreate() {
-    this.router.navigate(['/question/create', this.quiz.Id]);
+    this.router.navigate(['/question/create', this.quiz.id]);
   }
 
   onEdit(question: Question) {
-    this.router.navigate(['/question/edit', question.Id]);
+    this.router.navigate(['/question/edit', question.id]);
   }
 
   onDelete(question: Question) {
     if (confirm('Do you really want to delete this question?')) {
-      this.questionService.deleteQuestion(question.Id).subscribe(res => {
-        console.log('Question ' + question.Id + ' has been deleted.');
+      this.questionService.deleteQuestion(question.id).subscribe(res => {
+        console.log('Question ' + question.id + ' has been deleted.');
 
         // refresh the question list
         this.loadData();

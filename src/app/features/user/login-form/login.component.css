@@ -1,36 +1,11 @@
-form {
+.form-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 350px;
-  padding: 15px;
-  margin: auto;
 }
 
-.form-signin .checkbox {
-  font-weight: 400;
-}
-
-.form-signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.form-container>* {
+  width: 100%;
 }
 
 /* hr with centered text */
@@ -65,47 +40,4 @@ form {
   line-height: 1.5em;
   color: #818078;
   background-color: #fcfcfa;
-}
-
-
-
-.form-group label {
-  width: 100%;
-}
-
-.btn.btn-block {
-  padding: 12px 10px;
-}
-
-.margin-top20 {
-  margin-top: 20px;
-}
-
-.no-margin {
-  margin: 0;
-}
-
-.footer {
-  margin: 40px 0;
-  color: #888;
-  text-align: center;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-container>* {
-  width: 100%;
-}
-
-.example-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
 }

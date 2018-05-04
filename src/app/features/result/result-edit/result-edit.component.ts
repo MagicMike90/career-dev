@@ -71,12 +71,12 @@ export class ResultEditComponent implements OnInit {
 
     if (this.editMode) {
       this.resultService.updateResult(tempResult).subscribe(res => {
-        console.log('Result ' + res.Id + ' has been updated.');
+        console.log('Result ' + res.id + ' has been updated.');
         this.router.navigate(['quiz/edit', res.QuizId]);
       });
     } else {
       this.resultService.addResult(tempResult).subscribe(res => {
-        console.log('Result ' + res.Id + ' has been updated.');
+        console.log('Result ' + res.id + ' has been updated.');
         this.router.navigate(['quiz/edit', res.QuizId]);
       });
     }
