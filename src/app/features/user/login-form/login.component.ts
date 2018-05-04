@@ -2,8 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
-import { MatDialog } from '@angular/material';
-import { ProgressDialogComponent } from '../../../shared/components/progress-dialog/progress-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService,
-    public dialog: MatDialog) { }
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.title = 'User Login';
@@ -33,36 +30,32 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dialog.open(ProgressDialogComponent{
-      height: '400px',
-      width: '600px',
-    });
 
-    // const email = this.form.value.email;
-    // const password = this.form.value.password;
+    const email = this.form.value.email;
+    const password = this.form.value.password;
 
-    // this.authService.login(email, password)
-    //   .subscribe(res => {
-    //     // login successful
+    this.authService.login(email, password)
+      .subscribe(res => {
+        // login successful
 
-    //     // outputs the login info through a JS alert.
-    //     // IMPORTANT: remove this when test is done.
-    //     alert('Login successful! '
-    //       + 'USERNAME: '
-    //       + email
-    //       + ' TOKEN: '
-    //       + this.authService.getAuth().token
-    //     );
+        // outputs the login info through a JS alert.
+        // IMPORTANT: remove this when test is done.
+        alert('Login successful! '
+          + 'USERNAME: '
+          + email
+          + ' TOKEN: '
+          + this.authService.getAuth().token
+        );
 
-    //     this.router.navigate(['dashboard']);
-    //   },
-    //     err => {
-    //       // login failed
-    //       console.log(err);
-    //       this.form.setErrors({
-    //         'auth': 'Incorrect username or password'
-    //       });
-    //     });
+        this.router.navigate(['dashboard']);
+      },
+        err => {
+          // login failed
+          console.log(err);
+          this.form.setErrors({
+            'auth': 'Incorrect username or password'
+          });
+        });
   }
 
   onBack() {

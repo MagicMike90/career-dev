@@ -8,8 +8,6 @@ import {
   MatDialogModule, MatProgressSpinnerModule
 } from '@angular/material';
 
-import { ProgressDialogComponent } from './components/progress-dialog/progress-dialog.component';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -42,8 +40,6 @@ import { ProgressDialogComponent } from './components/progress-dialog/progress-d
 
   ],
   declarations: [
-    ProgressDialogComponent
-  ],
-  entryComponents: [ProgressDialogComponent]
+  ]
 })
 export class ShareModule { }
