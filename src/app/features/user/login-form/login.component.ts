@@ -85,10 +85,10 @@ export class LoginComponent implements OnInit {
     return e && (e.dirty || e.touched) && !e.valid;
   }
 
-  getErrorMessage(type) {
+  getErrorMessage(name) {
     const errors = {};
-    errors[type] = this.form.get(type).errors;
-    console.log(errors[type]);
-    return errors[type];
+    errors[name] = this.getFormControl(name).errors;
+    console.log(errors[name]);
+    return errors[name];
   }
 }
