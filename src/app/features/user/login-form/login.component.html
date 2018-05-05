@@ -1,73 +1,55 @@
-<!-- <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h3>Please sign in</h3>
-  <mat-form-field>
-    <input matInput placeholder="Email" formControlName="email" required>
-    <mat-error *ngIf="getFormControl('email').invalid">{{getErrorMessage("email")}}</mat-error>
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Enter your password" type="password" formControlName="password" required>
-    <mat-error *ngIf="getFormControl('password').invalid">{{getErrorMessage("password")}}</mat-error>
-  </mat-form-field>
-  <div class="button-group" fxLayoutAlign="space-between" fxLayoutGap="15px">
-    <button mat-raised-button color="primary">Login</button>
-    <button type="button" mat-raised-button color="primary" routerLink="/user/register">Create Account</button>
+<!-- <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-label-group" [ngClass]="{ 'has-error has-feedback' : hasError('email') }">
+    <input type="email" class="form-control" placeholder="Email address" formControlName="email" required autofocus>
+    <label for="inputEmail">Email address</label>
+    <span *ngIf="hasError('email')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+    <div *ngIf="hasError('email')" class="invalid-feedback">
+      Please insert a valid username or e-mail address.
+    </div>
   </div>
-  <span class="mat-caption">
-    <button mat-button type="button" color="primary" routerLink="/user/forgot">Forget you password?</button>
-  </span>
-</form>
-<div class="text-center">
-  <hr class="hr-text" data-content="OR">
-  <a href="#" class="fa fa-facebook"></a>
-  <a href="#" class="fa fa-twitter"></a>
-  <a href="#" class="fa fa-google"></a>
-  <a href="#" class="fa fa-linkedin"></a>
-</div> -->
-<!-- <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <section class="form-block">
-    <label>Please sign in</label>
-    <div class="form-group">
-      <label for="empFullName" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="">
-        <input type="text" formControlName="email" placeholder="Email">
-        <span class="tooltip-content">
-          Email is required.
-        </span>
-      </label>
+
+  <div class="form-label-group" [ngClass]="{ 'has-error has-feedback' : hasError('password') }">
+    <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
+    <label for="inputPassword">Password</label>
+    <span *ngIf="hasError('password')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+    <div *ngIf="hasError('password')" class="invalid-feedback">
+      Please insert a password.
     </div>
-    <div class="form-group">
-      <label for="empPostalCode" aria-haspopup="true" role="tooltip" class="tooltip tooltip-validation tooltip-sm" [class.invalid]="">
-        <input type="text" formControlName="password" placeholder="Password">
-        <span class="tooltip-content">
-          Password code is required.
-        </span>
-      </label>
-    </div>
-    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Add</button>
-  </section>
-</form> -->
-<!-- <form class="form-signin" class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
+  </div>
+  <div class="d-flex justify-content-between mb-3">
+    <div class="checkbox">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-  </form> -->
-<clr-modal [(clrModalOpen)]="opened" [clrModalClosable]="false">
-  <h3 class="modal-title">No "x" in the top-right corner</h3>
-  <div class="modal-body">
-    <p>Clicking on the backdrop doesn't do anything.</p>
+    <div class="login-link">
+      <a [routerLink]="['/user/forgot']">
+        Forgot?
+      </a>
+    </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="opened = false">
-      I'm the only way to close the modal!
-    </button>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+</form> -->
+<form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
+    <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
-</clr-modal>
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Password" formControlName="password">
+  </div>
+  <div class="d-flex justify-content-between">
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input">
+      <label class="form-check-label">Remember me</label>
+    </div>
+    <div class="login-link">
+      <a [routerLink]="['/user/forgot']">
+        Forgot?
+      </a>
+    </div>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>

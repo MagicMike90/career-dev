@@ -1,6 +1,7 @@
 .brand {
-    padding-top: 100px;
+    padding-top: 120px;
 }
+
 .brand img {
     width: 90px;
     height: 90px;
@@ -9,7 +10,6 @@
 .brand h2 {
     margin-top: 0;
 }
-
 
 .footer {
     position: absolute;

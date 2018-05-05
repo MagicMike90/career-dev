@@ -66,7 +66,11 @@ export class ForgetPasswordFormComponent implements OnInit {
   getFormControl(name: string) {
     return this.form.get(name);
   }
-
+  // returns TRUE if the FormControl is invalid after user changes
+  hasError(name: string) {
+    const e = this.getFormControl(name);
+    return e && (e.dirty || e.touched) && !e.valid;
+  }
   getErrorMessage(name) {
     const errors = {};
     errors['email'] = (this.getFormControl('email').hasError('required') ? 'You must enter a value' :
