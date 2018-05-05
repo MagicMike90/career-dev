@@ -11,6 +11,8 @@ import { AuthService } from '../../../core/services/auth.service';
 export class LoginComponent implements OnInit {
   title: string;
   form: FormGroup;
+  employeeAddressForm: FormGroup;
+  submitted: boolean;
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -21,6 +23,20 @@ export class LoginComponent implements OnInit {
 
     // initialize the form
     this.createForm();
+
+    this.employeeAddressForm = new FormGroup({
+      fullName: new FormControl('', Validators.required),
+      address: new FormGroup({
+        postalCode: new FormControl('', Validators.required),
+        country: new FormControl('', Validators.required)
+      })
+    });
+    this.submitted = false;
+  }
+
+  addNewEmployeeAddress() {
+    this.employeeAddressForm.reset();
+    this.submitted = false;
   }
   createForm() {
     this.form = this.fb.group({
