@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   title: string;
   form: FormGroup;
   employeeAddressForm: FormGroup;
-  submitted: boolean;
+  loading: boolean;
 
   constructor(private router: Router,
     private fb: FormBuilder,
@@ -23,36 +23,33 @@ export class LoginComponent implements OnInit {
 
     // initialize the form
     this.createForm();
-
-    this.employeeAddressForm = new FormGroup({
-      fullName: new FormControl('', Validators.required),
-      address: new FormGroup({
-        postalCode: new FormControl('', Validators.required),
-        country: new FormControl('', Validators.required)
-      })
-    });
-    this.submitted = false;
   }
 
-  addNewEmployeeAddress() {
-    this.employeeAddressForm.reset();
-    this.submitted = false;
-  }
   createForm() {
     this.form = this.fb.group({
       email: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      remember: new FormControl('')
     });
+    this.loading = false;
   }
-
+  pending() {
+    this.loading = true;
+    this.form.disable();
+  }
+  finish() {
+    this.loading = false;
+    this.form.enable();
+  }
   onSubmit() {
-
+    this.pending();
     const email = this.form.value.email;
     const password = this.form.value.password;
 
     this.authService.login(email, password)
       .subscribe(res => {
         // login successful
+        this.finish();
 
         // outputs the login info through a JS alert.
         // IMPORTANT: remove this when test is done.
@@ -67,6 +64,7 @@ export class LoginComponent implements OnInit {
       },
         err => {
           // login failed
+          this.finish();
           console.log(err);
           this.form.setErrors({
             'auth': 'Incorrect username or password'
@@ -76,6 +74,10 @@ export class LoginComponent implements OnInit {
 
   onBack() {
     this.router.navigate(['login']);
+  }
+
+  isLoading() {
+    return this.loading;
   }
 
   // retrieve a FormControl
