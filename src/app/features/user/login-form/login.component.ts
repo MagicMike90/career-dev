@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
           + 'USERNAME: '
           + email
           + ' TOKEN: '
-          + this.authService.getAuth().token
+          + res
         );
 
         this.router.navigate(['dashboard']);

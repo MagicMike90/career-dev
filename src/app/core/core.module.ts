@@ -9,6 +9,7 @@ import { AuthRequestInterceptService } from './services/auth.request.intercept.s
 import { AuthResponseInterceptService } from './services/auth.response.intercept.service';
 import { RegisterService } from './services/register.service';
 import { AuthGuard } from './guards/auth.guard';
+import { LocalStorageService } from './services/local-storage.service';
 
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -60,7 +61,8 @@ function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
       multi: true
     },
     RegisterService,
-    AuthGuard
+    AuthGuard,
+    LocalStorageService
   ]
 })
 export class CoreModule {

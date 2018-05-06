@@ -5,7 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { LocalStorageService } from './local-storage.service';
 import handleError from '../http.error.handler';
+
+import * as Constant from '../constant';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,15 +27,16 @@ export class AuthService {
 
   constructor(private http: HttpClient,
     @Optional() @Inject(APP_BASE_HREF) origin: string,
-    @Inject(PLATFORM_ID) private platformId: any) {
+    @Inject(PLATFORM_ID) private platformId: any,
+    private localStorageService: LocalStorageService) {
     this.authTokenUrl = `${origin}${this.authTokenUrl}`;
     this.facebookTokenUrl = `${origin}${this.facebookTokenUrl}`;
   }
 
   // performs the login
-  login(username: string, password: string): Observable<TokenResponse> {
+  login(email: string, password: string): Observable<TokenResponse> {
     const data = {
-      username: username,
+      username: email,
       password: password,
       client_id: this.clientId,
       // required when signing up with username/password
@@ -56,7 +60,7 @@ export class AuthService {
       client_id: this.clientId,
       // required when signing up with username/password
       grant_type: 'refresh_token',
-      refresh_token: this.getAuth().refresh_token,
+      refresh_token: this.localStorageService.getAuth().refresh_token,
       // space-separated list of scopes for which the token is issued
       scope: 'offline_access profile email'
     };
@@ -67,59 +71,20 @@ export class AuthService {
   // retrieve the access & refresh tokens from the server
   getAuthFromServer(url: string, data: any): Observable<TokenResponse> {
     return this.http.post<TokenResponse>(url, data, httpOptions).pipe(
-      tap(token => this.setAuth(token)),
+      tap(token => this.localStorageService.setAuth(token)),
       catchError(handleError<TokenResponse>('getToken'))
     );
   }
 
-  // forget the password
-  forget(email) {
-    // const data = {
-    //   client_id: this.clientId,
-    //   // required when signing up with username/password
-    //   grant_type: 'refresh_token',
-    //   refresh_token: this.getAuth().refresh_token,
-    //   // space-separated list of scopes for which the token is issued
-    //   scope: 'offline_access profile email'
-    // };
-
-    // return this.http.post<TokenResponse>(url, data, httpOptions).pipe(
-    //   tap(token => this.setAuth(token)),
-    //   catchError(handleError<TokenResponse>('getToken'))
-    // );
-  }
-
   // performs the logout
   logout(): boolean {
-    this.setAuth(null);
+    this.localStorageService.setAuth(null);
     return true;
   }
 
-  // Persist auth into localStorage or removes it if a NULL argument is given
-  setAuth(auth: TokenResponse | null): boolean {
-    if (auth) {
-      localStorage.setItem(
-        this.authKey,
-        JSON.stringify(auth));
-    } else {
-      localStorage.removeItem(this.authKey);
-    }
-    return true;
-  }
-
-  // Retrieves the auth JSON object (or NULL if none)
-  getAuth(): TokenResponse | null {
-    const token = localStorage.getItem(this.authKey);
-    if (token) {
-      return JSON.parse(token);
-    } else {
-      return null;
-    }
-  }
 
   // Returns TRUE if the user is logged in, FALSE otherwise.
   isLoggedIn(): boolean {
-    return localStorage.getItem(this.authKey) != null;
+    return this.localStorageService.getAuth() != null;
   }
-
 }
