@@ -1,7 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpHandler, HttpEvent, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs/Observable';
+import { LocalStorageService } from './local-storage.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthRequestInterceptService implements HttpInterceptor {
@@ -13,7 +14,9 @@ export class AuthRequestInterceptService implements HttpInterceptor {
     next: HttpHandler): Observable<HttpEvent<any>> {
 
     const auth = this.injector.get(AuthService);
-    const token = (auth.isLoggedIn()) ? auth.getAuth().token : null;
+    const localStorage = this.injector.get(LocalStorageService);
+    const token = (auth.isLoggedIn()) ? localStorage.getAuth().token : null;
+
     if (token) {
       request = request.clone({
         setHeaders: {

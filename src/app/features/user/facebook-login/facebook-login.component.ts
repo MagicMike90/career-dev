@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
 
 // declare these vars here
 // to let the TS compiler know that they exist
@@ -20,6 +21,7 @@ export class FacebookLoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService,
+    private localStorageService: LocalStorageService,
     // inject the local zone
     private zone: NgZone,
     @Inject(PLATFORM_ID) private platformId: Object) {
@@ -101,7 +103,7 @@ export class FacebookLoginComponent implements OnInit {
     };
     this.authService.facebookLogin(data).subscribe(res => {
       // store user login data
-      this.authService.setAuth(res);
+      this.localStorageService.setAuth(res);
 
       // redirect user to home
       this.router.navigate(['dashboard']);

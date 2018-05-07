@@ -1,8 +1,7 @@
 import { EventEmitter, Inject, Injectable, PLATFORM_ID, Optional } from '@angular/core';
 import { APP_BASE_HREF, isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable ,  of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import handleError from '../http.error.handler';

@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   HttpClient,
@@ -6,28 +6,28 @@ import {
   HttpRequest, HttpResponse, HttpErrorResponse
 } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs/Observable';
+import { LocalStorageService } from './local-storage.service';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap, retry } from 'rxjs/operators';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { of } from 'rxjs/observable/of';
+
 
 @Injectable()
 export class AuthResponseInterceptService implements HttpInterceptor {
 
   currentRequest: HttpRequest<any>;
-  auth: AuthService;
 
   constructor(
-    private injector: Injector,
-    private router: Router
+    private auth: AuthService,
+    private localStorage: LocalStorageService,
+    private router: Router,
+    private http: HttpClient
   ) { }
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
 
-    this.auth = this.injector.get(AuthService);
-    const token = (this.auth.isLoggedIn()) ? this.auth.getAuth().token : null;
+    const token = (this.auth.isLoggedIn()) ? this.localStorage.getAuth().token : null;
     if (token) {
       // save current request
       this.currentRequest = request;
@@ -56,8 +56,7 @@ export class AuthResponseInterceptService implements HttpInterceptor {
             console.log('refresh token successful');
 
             // re-submit the failed request
-            const http = this.injector.get(HttpClient);
-            return http.request(this.currentRequest).pipe(
+            return this.http.request(this.currentRequest).pipe(
               retry(3), // retry a failed request up to 3 times
               catchError(val => of(`I caught: ${val}`)) // then handle the error
             );
@@ -75,6 +74,6 @@ export class AuthResponseInterceptService implements HttpInterceptor {
         }, error => console.log(error));
       }
     }
-    return new ErrorObservable(err);
+    return throwError(err);
   }
 }
