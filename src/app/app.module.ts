@@ -20,7 +20,7 @@ import { DashboardModule } from './features/dashboard/dashboard.module';
     DashboardModule,
     AppRoutingModule
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' },],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

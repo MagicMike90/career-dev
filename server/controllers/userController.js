@@ -11,7 +11,7 @@ const path = require('path');
 // Create a new error handling controller method
 const getErrorMessage = function (err) {
     // Define the error message variable
-    const message = '';
+    let message = '';
 
     // If an internal MongoDB error occurs get the error message
     if (err.code) {
@@ -116,14 +116,13 @@ exports.signup = function (req, res, next) {
             return next(err);
         }
         // Create a new 'User' model instance
-        const user = new User(req.body);
-        const message = null;
+        const newUser = new User(req.body);
 
         // Set the user provider property
-        user.provider = 'local';
+        newUser.provider = 'local';
 
         // Try saving the new user document
-        user.save(function (err) {
+        newUser.save(function (err) {
             console.error(err);
             // If an error occurs, use flash messages to report the error
             if (err) {

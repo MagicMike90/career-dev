@@ -2,7 +2,7 @@
 'use strict';
 
 // Load the module dependencies
-const passport = require('passport');
+import passport from 'passport';
 import User from "../models/user";
 import './strategies/local.js';
 
