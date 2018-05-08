@@ -2,11 +2,11 @@ const winston = require("winston");
 
 const logger = new winston.Logger({
   transports: [
-    new(winston.transports.Console)({
+    new winston.transports.Console({
       level: process.env.NODE_ENV === "production" ? "error" : "debug"
     }),
-    new(winston.transports.File)({
-      filename: "./logs/debug.log",
+    new winston.transports.File({
+      filename: "debug.log",
       level: "debug"
     })
   ]

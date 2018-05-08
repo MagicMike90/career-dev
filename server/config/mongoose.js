@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 const config = require('./config.js');
 
-//  init database
-mongoose.Promise = global.Promise;
-mongoose.connect(config.db.uri, config.db.options, (error) => {
-  // Check error in initial connection. There is no 2nd param to the callback.
-  if (error) console.error('ERROR:', error);
-  console.log('Connect to database:', config.db.uri);
-});
+
+mongoose.connect(config.get("db:uri"), config.get("db:options")).then(
+  () => {  console.log('Connect to database:', config.get("db:uri"));},
+  err => { console.error('Mongoose ERROR:', err);}
+);
