@@ -1,26 +1,24 @@
-import express from 'express';
-import path from 'path';
-import morgan from 'morgan';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import compression from 'compression';
-import expressValidator from "express-validator";
-import passport from 'passport';
-import logger from '../utils/logger';
-import authCheckMiddleware from '../middlewares/requiredAuth';
+const express = require('express');
+const path = require('path');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const compression = require('compression');
+const expressValidator = require("express-validator");
+const passport = require('passport');
+const logger = require('../utils/logger');
+const authCheckMiddleware = require('../middlewares/requiredAuth');
 
-import auth from '../routes/auth';
-import index from '../routes/index';
-import users from '../routes/users';
-import transaction from '../routes/transaction';
-import mock from '../routes/mock';
+const auth = require('../routes/auth');
+const index = require('../routes/index');
+const users = require('../routes/users');
+const transaction = require('../routes/transaction');
+const mock = require('../routes/mock');
 
 
 const app = express();
 app.use(express.static(path.join(__dirname, '/../../dist')));
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(cors());
-// app.use(logger('dev'));
 app.use(morgan("combined", {
   "stream": logger.stream
 }));

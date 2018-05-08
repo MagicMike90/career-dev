@@ -1,7 +1,7 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
 
-import bookController from '../controllers/bookController';
+const bookController = require('../controllers/bookController');
 
 
 router.get('/', bookController.book_list);

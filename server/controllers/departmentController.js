@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-import Department from "../models/department";
+const Department = require("../models/department");
 
 
 exports.department_list = function (req, res) {
@@ -52,4 +51,4 @@ exports.department_create = function (req, res) {
     });
   });
 }
-exports.department_update = function (req, res) {}
+

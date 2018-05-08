@@ -1,15 +1,19 @@
-import winston from "winston";
+const winston = require("winston");
 
 const logger = new winston.Logger({
-    transports: [
-        new (winston.transports.Console)({ level: process.env.NODE_ENV === "production" ? "error" : "debug" }),
-        new (winston.transports.File)({ filename: "debug.log", level: "debug"})
-    ]
+  transports: [
+    new(winston.transports.Console)({
+      level: process.env.NODE_ENV === "production" ? "error" : "debug"
+    }),
+    new(winston.transports.File)({
+      filename: "./logs/debug.log",
+      level: "debug"
+    })
+  ]
 });
 
 if (process.env.NODE_ENV !== "production") {
-    logger.debug("Logging initialized at debug level");
+  logger.debug("Logging initialized at debug level");
 }
 
-export default logger;
-
+module.exports = logger;

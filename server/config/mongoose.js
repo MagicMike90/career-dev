@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import config from './config.js';
+const mongoose = require('mongoose');
+const config = require('./config.js');
 
 //  init database
 mongoose.Promise = global.Promise;

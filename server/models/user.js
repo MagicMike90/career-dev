@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -7,7 +7,9 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   email: {
     type: String,
-    index: { unique: true }
+    index: {
+      unique: true
+    }
   },
   password: {
     type: String,

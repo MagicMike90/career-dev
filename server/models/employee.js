@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const employeeSchema = new Schema({
@@ -34,7 +34,7 @@ employeeSchema.virtual('fullName').get(function () {
 }).set(function (v) {
   this.name.first = v.substr(0, v.indexOf(' '));
   this.name.last = v.substr(v.indexOf(' ') + 1);
-});;
+});
 employeeSchema.pre('save', function (next) {
   this.updatedAt = Date.now();
   next();
@@ -44,8 +44,8 @@ employeeSchema.index({
 });
 // Configure the 'employeeSchema' to use getters and virtuals when transforming to JSON
 employeeSchema.set('toJSON', {
-	getters: true,
-	virtuals: true
+  getters: true,
+  virtuals: true
 });
 
 const Employee = mongoose.model("employees", employeeSchema);

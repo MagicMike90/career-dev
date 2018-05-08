@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const transactionSchema = new Schema({
   id: Number,
-  amount : Number,
+  amount: Number,
   date: Date,
   bussiness: String,
   name: String,
@@ -19,8 +19,8 @@ transactionSchema.pre('save', function (next) {
 });
 // Configure the 'employeeSchema' to use getters and virtuals when transforming to JSON
 transactionSchema.set('toJSON', {
-	getters: true,
-	virtuals: true
+  getters: true,
+  virtuals: true
 });
 
 const Transaction = mongoose.model("Transation", transactionSchema);

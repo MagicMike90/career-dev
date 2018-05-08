@@ -2,8 +2,8 @@
  * Module dependencies.
  */
 
-import app from './config/express';
-import errorHandler from 'errorhandler';
+const app = require('./config/express');
+const errorHandler = require('errorhandler');
 
 
 

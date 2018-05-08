@@ -2,9 +2,9 @@
 'use strict';
 
 // Load the module dependencies
-import passport from 'passport';
-import User from "../models/user";
-import './strategies/local.js';
+const passport = require('passport');
+const User = require("../models/user");
+require('./strategies/local.js');
 
 // // Define the Passport configuration method
 // module.exports = function(app) {
