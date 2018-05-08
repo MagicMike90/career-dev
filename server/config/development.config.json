@@ -3,7 +3,7 @@
     "port": 8080
   },
   "db": {
-    "uri": "mongodb://localhost:27017/Store",
+    "uri": "mongodb://mongodb:27017/Career",
     "options": {
       "autoIndex": false, 
       "reconnectTries": "Number.MAX_VALUE", 

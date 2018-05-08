@@ -1,4 +1,4 @@
-FROM node
+FROM node:carbon
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -13,7 +13,7 @@ RUN npm install
 # RUN npm install --only=production
 
 # Bundle app source
-COPY . .
+COPY . /usr/src/app
 
 EXPOSE 5000
 CMD npm run dev:server

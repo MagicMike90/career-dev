@@ -17,7 +17,6 @@
 // };
 
 
-
 // exports.book_bulk_delete = function (req, res) {
   
 // };
