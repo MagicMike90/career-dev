@@ -9,8 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:client": "ng serve",
-    "dev:server": "NODE_ENV=development nodemon --watch server server/server.js"
+    "dev:client": "ng build --watch",
+    "dev:server": "NODE_ENV=development nodemon --watch server server/server.js",
+    "dev": "npm run dev:client & npm run dev:server"
   },
   "private": true,
   "dependencies": {

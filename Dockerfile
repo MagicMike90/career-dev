@@ -18,4 +18,4 @@ RUN npm install
 COPY . /usr/src/app
 
 EXPOSE 5000
-CMD npm run dev:server
+CMD npm run dev
