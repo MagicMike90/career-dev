@@ -3,26 +3,40 @@ services:
   node:
     container_name: nodeapp
     restart: always
-    build: .
+    build: ./app
     environment:
       - NODE_ENV=development
     volumes:
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules # This will mount the node_modules directory to the host machine using the buildtime directory.
+      - ./app:/usr/src/app
+       - /usr/src/app/node_modules # This will mount the node_modules directory to the host machine using the buildtime directory.
     ports:
       - "5000:5000"
-    depends_on: 
+    depends_on:
+      - nginx 
       - mongodb
     networks:
       - nodeapp-network
 
   mongodb:
-    container_name: mongodb
+    container_name: nodeapp-mongodb
     image: mongo
     volumes:
-      - ./data:/data/db
+      - ./mongo/data:/data/db
     ports:
       - "27017:27017"
+    networks:
+      - nodeapp-network
+
+  nginx:
+    container_name: nodeapp-nginx-proxy
+    restart: always
+    build: ./nginx
+    volumes:
+      - ./certbot/certs:/etc/letsencrypt
+      - ./certbot/certs-data:/data/letsencrypt
+    ports:
+      - 80:80
+      - 443:443
     networks:
       - nodeapp-network
 
