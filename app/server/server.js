@@ -5,13 +5,13 @@
 const app = require('./config/express');
 // require('./config/mongoose');
 const errorHandler = require('errorhandler');
-
+const config = require('./config/config.js');
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port = process.env.PORT || '5000';
+const port = process.env.PORT || config.get('server:port');
 app.set('port', port);
 
 

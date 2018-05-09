@@ -8,7 +8,7 @@ services:
       - NODE_ENV=development
     volumes:
       - ./app:/usr/src/app
-       - /usr/src/app/node_modules # This will mount the node_modules directory to the host machine using the buildtime directory.
+      - /usr/src/app/node_modules # This will mount the node_modules directory to the host machine using the buildtime directory.
     ports:
       - "5000:5000"
     depends_on:
@@ -32,8 +32,8 @@ services:
     restart: always
     build: ./nginx
     volumes:
-      - ./certbot/certs:/etc/letsencrypt
-      - ./certbot/certs-data:/data/letsencrypt
+      - ./ssl/certs:/etc/letsencrypt
+      - ./ssl/certs-data:/data/letsencrypt
     ports:
       - 80:80
       - 443:443

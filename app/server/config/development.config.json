@@ -3,7 +3,7 @@
     "port": 8080
   },
   "db": {
-    "uri": "mongodb://mongodb:27017/Career",
+    "uri": "mongodb://nodeapp-mongodb:27017/Career",
     "options": {
       "autoIndex": false, 
       "reconnectTries": "Number.MAX_VALUE", 
