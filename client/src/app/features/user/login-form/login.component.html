@@ -1,37 +1,3 @@
-<!-- <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-label-group" [ngClass]="{ 'has-error has-feedback' : hasError('email') }">
-    <input type="email" class="form-control" placeholder="Email address" formControlName="email" required autofocus>
-    <label for="inputEmail">Email address</label>
-    <span *ngIf="hasError('email')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-    <div *ngIf="hasError('email')" class="invalid-feedback">
-      Please insert a valid username or e-mail address.
-    </div>
-  </div>
-
-  <div class="form-label-group" [ngClass]="{ 'has-error has-feedback' : hasError('password') }">
-    <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
-    <label for="inputPassword">Password</label>
-    <span *ngIf="hasError('password')" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-    <div *ngIf="hasError('password')" class="invalid-feedback">
-      Please insert a password.
-    </div>
-  </div>
-  <div class="d-flex justify-content-between mb-3">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <div class="login-link">
-      <a [routerLink]="['/user/forgot']">
-        Forgot?
-      </a>
-    </div>
-  </div>
-
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
-</form> -->
 <form class="form-signin" [formGroup]="form" (ngSubmit)="onSubmit()" [ngClass]="{ 'loading disabled' : isLoading() }">
   <fieldset>
     <div class="form-group">
@@ -55,15 +21,16 @@
       </div>
       <div class="login-link">
         <a [routerLink]="['/user/forgot']">
-          forget?
+          forget passowrd?
         </a>
       </div>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">
       <i class="fa fa-spinner fa-spin"></i> Sign in</button>
-    <div class="text-center">
-      <hr class="hr-text" data-content="OR">
+    <hr class="hr-text" data-content="OR">
+    <div class="d-flex justify-content-between">
       <div>
+        <span>Or</span>
         <ul class="social-network social-circle">
           <li>
             <a href="#" class="icoFacebook" title="Facebook">
@@ -88,7 +55,7 @@
         </ul>
       </div>
       <a [routerLink]="['/user/register']">
-        Sign up?
+        Sign up
       </a>
     </div>
   </fieldset>

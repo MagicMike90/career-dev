@@ -34,6 +34,7 @@ export class AuthService {
 
   // performs the login
   login(email: string, password: string): Observable<TokenResponse> {
+
     const data = {
       username: email,
       password: password,

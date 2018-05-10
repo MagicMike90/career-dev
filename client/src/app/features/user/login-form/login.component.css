@@ -43,14 +43,15 @@ a.socialIcon:hover, .socialHoverClass {
 	-webkit-border-radius:50%;
 	border-radius:50%;
 	text-align:center;
-	width: 25px;
-	height: 25px;
-	font-size:10px;
+
+	width: 24px;
+	height: 24px;
+	font-size: 16px;
 	background-color: #D3D3D3;
 }
 .social-circle li i {
 	margin:0;
-	line-height:50px;
+	line-height:24px;
 	text-align: center;
 }
 
