@@ -12,7 +12,7 @@ nconf.argv()
 
 const NODE_ENV = nconf.get('NODE_ENV');
 nconf.defaults({
-    'conf': path.join(__dirname, `${NODE_ENV}.config.json`)
+    'conf': path.join(__dirname, `/env/${NODE_ENV}.config.json`)
   })
   .file(nconf.get('conf'));
   

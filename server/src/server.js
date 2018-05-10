@@ -3,7 +3,7 @@
  */
 
 const express = require('./express');
-// require('./config/mongoose');
+require('./config/mongoose');
 const errorHandler = require('errorhandler');
 const config = require('./config/config.js');
 
