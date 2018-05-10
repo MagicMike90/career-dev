@@ -1,34 +1,45 @@
 version: "3"
 services:
-  node:
-    container_name: nodeapp
-    restart: always
-    build: ./app
+  career-dev-client:
+    container_name: career-dev-client
+    build: ./client
     environment:
       - NODE_ENV=development
     volumes:
-      - ./app:/usr/src/app
+      - ./client:/usr/src/app
       - /usr/src/app/node_modules # This will mount the node_modules directory to the host machine using the buildtime directory.
     ports:
-      - "5000:5000"
+      - "4200:4200"
+    networks:
+      - app-network
+
+  career-dev-server:
+    container_name: career-dev-server
+    build: ./server
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules # This will mount the node_modules directory to the host machine using the buildtime directory.
+    ports:
+      - "8080:8080"
     depends_on:
       - mongodb
     networks:
-      - nodeapp-network
+      - app-network
 
   mongodb:
-    container_name: nodeapp-mongodb
+    container_name: career-dev-mongodb
     image: mongo
     volumes:
       - ./mongo/data:/data/db
     ports:
       - "27017:27017"
     networks:
-      - nodeapp-network
+      - app-network
 
   nginx:
-    container_name: nodeapp-nginx-proxy
-    restart: always
+    container_name: career-dev-proxy
     build: ./nginx
     volumes:
       - ./nginx/ssl:/etc/ssl
@@ -36,10 +47,11 @@ services:
       - 80:80
       - 443:443
     depends_on:
-      - node 
+      - career-dev-client 
+      - career-dev-server 
     networks:
-      - nodeapp-network
+      - app-network
 
 networks:
-  nodeapp-network:
+  app-network:
     driver: bridge
