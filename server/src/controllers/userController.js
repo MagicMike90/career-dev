@@ -69,7 +69,7 @@ const getErrorMessage = function (err) {
 // }
 const generateToken = (payload) => {
   // sign with RSA SHA256
-  const cert = fs.readFileSync(path.join(__dirname, '/../../RS256/jwtRS256.key')); // get private key
+  const cert = fs.readFileSync(path.join(__dirname, '/../../keys/jwtRS256.key')); // get private key
 
   // create a token string
   return jwt.sign(payload, cert, {
