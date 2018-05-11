@@ -27,6 +27,7 @@ services:
       - mongodb
     networks:
       - app-network
+      - api-network
 
   mongodb:
     container_name: career-dev-mongodb
@@ -52,6 +53,19 @@ services:
     networks:
       - app-network
 
+  redis:
+    container_name: service-rsa-redis
+    image: redis
+    build: ./service-rsa-redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./service-rsa-redis/data:/data
+    networks:
+      - api-network
+
 networks:
   app-network:
+    driver: bridge
+  api-network:
     driver: bridge
