@@ -110,8 +110,8 @@ exports.signin = function (req, res, next) {
   })(req, res, next);
 }
 // Create a new controller method that creates new 'regular' users
-exports.signup = function (req, res, next) {
-  passport.authenticate('jwt', function (err, user) {
+exports.create = function (req, res, next) {
+  passport.authenticate('local', function (err, user) {
     if (err) {
       return next(err);
     }

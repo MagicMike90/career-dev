@@ -2,34 +2,30 @@
  * Module dependencies.
  */
 
-const express = require('./express');
+const app = require('./app');
 require('./config/mongoose');
 const errorHandler = require('errorhandler');
 const config = require('./config/config.js');
 
-/**
- * Get port from environment and store in Express.
- */
 
 const port = process.env.PORT || config.get('server:port');
-express.set('port', port);
+app.set('port', port);
 
 
 /**
  * Error Handler. Provides full stack - remove for production
  */
-express.use(errorHandler());
-
+app.use(errorHandler());
 
 
 /**
  * Start Express server.
  */
-express.listen(express.get("port"), () => {
+app.listen(app.get("port"), () => {
   console.log(
     "  App is running at http://localhost:%d in %s mode",
-    express.get("port"),
-    express.get("env")
+    app.get("port"),
+    app.get("env")
   );
   console.log("  Press CTRL-C to stop\n");
 });

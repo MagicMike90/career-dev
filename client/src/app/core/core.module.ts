@@ -18,6 +18,7 @@ import { SiteLayoutComponent } from './components/site-layout/site-layout.compon
 import { AboutComponent } from './components/about/about.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { MessageComponent } from './components/message/message.component';
 
 
 
@@ -41,12 +42,14 @@ function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     AboutComponent,
     PagenotfoundComponent,
     ModalComponent,
+    MessageComponent,
   ],
   exports: [
     NavMenuComponent,
     NavBarComponent,
     AboutComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    MessageComponent
   ],
   providers: [
     AuthService,

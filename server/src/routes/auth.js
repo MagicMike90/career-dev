@@ -7,7 +7,7 @@ const userController = require('../controllers/userController');
 // Set up the 'signin' routes
 router.post('/signin', userController.signin);
 
-router.post('/signup', userController.signup);
+router.post('/signup', userController.create);
 
 
 module.exports = router;
