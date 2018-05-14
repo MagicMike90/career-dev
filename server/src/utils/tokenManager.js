@@ -1,4 +1,4 @@
-const jwt = require('jwt');
+const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
 
@@ -58,4 +58,4 @@ class TokenManager {
 //   return jwt.sign(payload, this.secretOrPrivateKey, jwtSignOptions);
 // }
 
-module.exports = new TokenGenerator;
+module.exports = new TokenManager;

@@ -56,7 +56,6 @@ services:
   redis:
     container_name: service-rsa-redis
     image: redis
-    build: ./service-rsa-redis
     ports:
       - 6379:6379
     volumes:
