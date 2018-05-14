@@ -1,0 +1,27 @@
+.alert {
+  border-radius: 0;
+}
+
+.alert-app-level.alert-success {
+  background: #62a420;
+  color: #fff;
+  border: none;
+}
+
+.alert-app-level.alert-primary {
+  background: #007cbb;
+  color: #fff;
+  border: none;
+}
+
+.alert-app-level.alert-warning {
+  background: #c25400;
+  color: #fff;
+  border: none;
+}
+
+.alert-app-level.alert-danger {
+  background: #c92100;
+  color: #fff;
+  border: none;
+}
