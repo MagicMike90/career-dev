@@ -41,6 +41,6 @@ export class MessageService {
   }
 
   clear() {
-    this.messages = [];
+    this.subject.next('');
   }
 }

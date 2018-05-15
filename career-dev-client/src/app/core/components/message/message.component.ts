@@ -15,10 +15,12 @@ export class MessageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.messageService.getMessage().subscribe(message => { this.message = message; });
+    this.messageService.getMessage().subscribe(message => {
+      this.message = message;
+      console.log(message);
+    });
   }
-
-  clear() {
-
+  clearMessage() {
+    this.messageService.clear();
   }
 }
