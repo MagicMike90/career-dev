@@ -2,11 +2,11 @@ version: "3"
 services:
   career-dev-client:
     container_name: career-dev-client
-    build: ./client
+    build: ./career-dev-client
     environment:
       - NODE_ENV=development
     volumes:
-      - ./client:/usr/src/app
+      - ./career-dev-client:/usr/src/app
       - /usr/src/app/node_modules # This will mount the node_modules directory to the host machine using the buildtime directory.
     ports:
       - "4200:4200"
@@ -15,11 +15,11 @@ services:
 
   career-dev-server:
     container_name: career-dev-server
-    build: ./server
+    build: ./career-dev-server
     environment:
       - NODE_ENV=development
     volumes:
-      - ./server:/usr/src/app
+      - ./career-dev-server:/usr/src/app
       - /usr/src/app/node_modules # This will mount the node_modules directory to the host machine using the buildtime directory.
     ports:
       - "8080:8080"

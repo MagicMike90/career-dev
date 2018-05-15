@@ -7,10 +7,15 @@ import { MessageService } from '../../services/message.service';
   styleUrls: ['./message.component.css']
 })
 export class MessageComponent implements OnInit {
+  alertType: string;
+  message: string;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService) {
+    this.alertType = 'alert-primary';
+  }
 
   ngOnInit() {
+    this.messageService.getMessage().subscribe(message => { this.message = message; });
   }
 
   clear() {
