@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
-import { AlertType } from '../models/appAlert';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ export class AppLevelAlertService {
   private subject = new Subject<any>();
   private keepAfterNavigationChange = false;
   messages: string[] = [];
-
 
   constructor(private router: Router) {
     // clear alert message on route change
@@ -26,11 +24,13 @@ export class AppLevelAlertService {
       }
     });
   }
-
+  info(message: string, keepAfterNavigationChange = false) {
+    this.keepAfterNavigationChange = keepAfterNavigationChange;
+    this.subject.next({ type: 'info', text: message });
+  }
   success(message: string, keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
-    
-    this.subject.next(new AppAlert(type: AlertType.Success, message: message));
+    this.subject.next({ type: 'success', text: message });
   }
 
   error(message: string, keepAfterNavigationChange = false) {
