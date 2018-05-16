@@ -14,7 +14,7 @@ export default function handleError<T>(operation = 'operation', result?: T) {
     // TODO: better job of transforming error for user consumption
     // return Observable.throw(error.message);
     // console.log(`${operation} failed: ${error.message}`);
-    return throwError(error.message);
+    return throwError(error.error);
 
     // // Let the app keep running by returning an empty result.
     // return of(result as T);

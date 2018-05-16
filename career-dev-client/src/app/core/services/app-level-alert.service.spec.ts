@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { MessageService } from './message.service';
+import { AppLevelAlertService } from './app-level-alert.service';
 
 describe('MessageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MessageService]
+      providers: [AppLevelAlertService]
     });
   });
 
-  it('should be created', inject([MessageService], (service: MessageService) => {
+  it('should be created', inject([AppLevelAlertService], (service: AppLevelAlertService) => {
     expect(service).toBeTruthy();
   }));
 });

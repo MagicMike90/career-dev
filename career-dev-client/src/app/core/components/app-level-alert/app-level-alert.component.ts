@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from '../../services/message.service';
+import { AppLevelAlertService } from '../../services/app-level-alert.service';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.css']
+  selector: 'app-level-alert',
+  templateUrl: './app-level-alert.component.html',
+  styleUrls: ['./app-level-alert.component.css']
 })
-export class MessageComponent implements OnInit {
+export class AppLevelAlertComponent implements OnInit {
   alertType: string;
   message: string;
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: AppLevelAlertService) {
     this.alertType = 'alert-primary';
   }
 

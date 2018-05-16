@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Subject, Observable } from 'rxjs';
+import { AlertType } from '../models/appAlert';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
+export class AppLevelAlertService {
   private subject = new Subject<any>();
   private keepAfterNavigationChange = false;
   messages: string[] = [];
@@ -28,7 +29,8 @@ export class MessageService {
 
   success(message: string, keepAfterNavigationChange = false) {
     this.keepAfterNavigationChange = keepAfterNavigationChange;
-    this.subject.next({ type: 'success', text: message });
+    
+    this.subject.next(new AppAlert(type: AlertType.Success, message: message));
   }
 
   error(message: string, keepAfterNavigationChange = false) {

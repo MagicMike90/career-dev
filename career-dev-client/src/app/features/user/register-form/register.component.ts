@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { RegisterService } from '../../../core/services/register.service';
+import { AppLevelAlertService } from '../../../core/services/app-level-alert.service';
+
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router,
     private fb: FormBuilder,
     private http: HttpClient,
-    private registerService: RegisterService) { }
+    private registerService: RegisterService,
+    private messageService: AppLevelAlertService) { }
 
   ngOnInit() {
     this.title = 'New User Registration';
@@ -58,7 +61,13 @@ export class RegisterComponent implements OnInit {
       // console.log('User ' + user.username + ' has been created.');
       // // redirect to login page
       // this.router.navigate(['user/login']);
-    }, error => console.log(error));
+    }, err => {
+      console.log(err);
+      this.messageService.error(err.message);
+      this.form.setErrors({
+        'auth': 'Incorrect username or password'
+      });
+    });
   }
 
   onBack() {

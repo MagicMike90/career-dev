@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
-import { MessageService } from '../../../core/services/message.service';
+import { AppLevelAlertService } from '../../../core/services/app-level-alert.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private messageService: MessageService) { }
+    private messageService: AppLevelAlertService) { }
 
   ngOnInit() {
     this.title = 'User Login';
