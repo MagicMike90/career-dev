@@ -10,6 +10,7 @@ import { AuthResponseInterceptService } from './services/auth.response.intercept
 import { RegisterService } from './services/register.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LocalStorageService } from './services/local-storage.service';
+import { ModalService } from './services/modal.service';
 
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -49,7 +50,8 @@ function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     NavBarComponent,
     AboutComponent,
     PagenotfoundComponent,
-    AppLevelAlertComponent
+    AppLevelAlertComponent,
+    ModalComponent
   ],
   providers: [
     AuthService,
@@ -65,7 +67,8 @@ function throwIfAlreadyLoaded(parentModule: any, moduleName: string) {
     },
     RegisterService,
     AuthGuard,
-    LocalStorageService
+    LocalStorageService,
+    ModalService
   ]
 })
 export class CoreModule {
